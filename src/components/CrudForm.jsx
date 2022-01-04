@@ -3,15 +3,26 @@ import React, { useState, useEffect } from 'react';
 const initialForm = {
     name: "",
     constellation:"",
-    id: null
+    id: null,
 }
 
 const CrudForm = () => {
 
     const [form, setForm] = useState(initialForm)
 
-    const handleChange = e =>{}
-    const handleSubmit = e =>{}
+    const handleChange = e =>{
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value
+        })
+    }
+    const handleSubmit = e =>{
+        e.preventDefault()
+        if(!form.name || !form.constellation){
+            alert('Datos incompletos')
+            return
+        }
+    }
     const handleReset = e =>{}
 
     return (
