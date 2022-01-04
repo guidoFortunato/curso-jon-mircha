@@ -6,7 +6,7 @@ const initialForm = {
     id: null,
 }
 
-const CrudForm = () => {
+const CrudForm = ({createData, updateData, dataToEdit, setDataToEdit}) => {
 
     const [form, setForm] = useState(initialForm)
 
@@ -22,8 +22,19 @@ const CrudForm = () => {
             alert('Datos incompletos')
             return
         }
+
+        if(form.id === null){
+            createData(form)
+        }else{
+            updateData(form)
+        }
+        handleReset()
+
     }
-    const handleReset = e =>{}
+    const handleReset = e =>{
+        setForm(initialForm)
+        setDataToEdit(null)
+    }
 
     return (
         <div>
