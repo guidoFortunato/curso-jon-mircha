@@ -23,6 +23,15 @@ const CrudForm = ({createData, updateData, dataToEdit, setDataToEdit}) => {
             return
         }
 
+        if(!form.name.trim()){
+            alert('Nombre no puede estar vacío')
+            return
+        }
+        if(!form.constellation.trim()){
+            alert('Constelación no puede estar vacío')
+            return
+        }
+
         if(form.id === null){
             createData(form)
         }else{
