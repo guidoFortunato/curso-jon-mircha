@@ -60,25 +60,33 @@ const CrudApp = () => {
       setDb(newData)
     }
     const deleteData = (id) => {
-      let newDAta = db.filter(el => el.id !== id)
-      setDb(newDAta)
+      let isDelete = window.confirm(`Estas seguro de eliminar el registro con el id: ${id}`)
+      if (isDelete) {
+        let newDAta = db.filter(el => el.id !== id)
+        setDb(newDAta)
+      }else{
+        alert('Confirmación cancelada')
+        return
+      }
     }
 
 
     return (
         <div>
             <h2>CRUD APP</h2>
-            <CrudForm 
-              createData={createData} 
-              updateData={updateData} 
-              dataToEdit={dataToEdit} 
-              setDataToEdit={setDataToEdit}
-            />
-            <CrudTable 
-              data={db}
-              setDataToEdit={setDataToEdit}
-              deleteData={deleteData}
-            />
+            <article className="grid-1-2">
+              <CrudForm 
+                createData={createData} 
+                updateData={updateData} 
+                dataToEdit={dataToEdit} 
+                setDataToEdit={setDataToEdit}
+              />
+              <CrudTable 
+                data={db}
+                setDataToEdit={setDataToEdit}
+                deleteData={deleteData}
+              />
+            </article>
         </div>
     )
 }
