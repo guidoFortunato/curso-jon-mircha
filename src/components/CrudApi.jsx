@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from 'react';
+import { helpHttp } from '../helpers/helpHttp';
 import CrudForm from './CrudForm'
 import CrudTable from './CrudTable'
 
 
 const CrudApi = () => {
+  const [db, setDb] = useState([])
+  const [dataToEdit, setDataToEdit] = useState(null);
+  let url = 'http://localhost:5000/santos'
+  let api = helpHttp()
 
-    const getData = async ()=>{
-        const res = await fetch('http://localhost:5000/santos')
-        const data = await res.json()
-        setDb(data)
-    }
 
-    useEffect(() => {
-        
-        getData()
-    }, [])
+  useEffect(() => {
 
-    const [db, setDb] = useState([])
+    api.get(url).then(res => setDb(res))
+    
+    
+  }, [])
 
-    const [dataToEdit, setDataToEdit] = useState(null);
+
+   
+
 
     const createData = (data) => {
       data.id = Date.now()
@@ -42,7 +44,7 @@ const CrudApi = () => {
 
     return (
         <div>
-            <h2>CRUD APP</h2>
+            <h2>CRUD API</h2>
             <article className="grid-1-2">
               <CrudForm 
                 createData={createData} 
