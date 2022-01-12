@@ -6,15 +6,17 @@ export const helpHttp = () => {
         }
 
         const controller = new AbortController()
+        // console.log(controller)
         options.signal = controller.signal
+        
 
         options.method = options.method || "GET"
         options.headers = options.headers ? {...defaultHeader, ...options.headers} : defaultHeader
 
         options.body = JSON.stringify(options.body) || false
         if (!options.body) delete options.body
-        console.log('options abajo')
-        console.log(options)
+        // console.log('options abajo')
+        // console.log(options)
 
         setTimeout(() => controller.abort(), 3000);
 
