@@ -18,6 +18,7 @@ const CrudApi = () => {
   useEffect(() => {
     setLoading(true)
     helpHttp().get(url).then(res => {
+      console.log(res)
       if (!res.err){
         setDb(res)
         setError(null)
