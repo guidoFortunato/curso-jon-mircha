@@ -18,7 +18,6 @@ const CrudApi = () => {
   useEffect(() => {
     setLoading(true)
     helpHttp().get(url).then(res => {
-      console.log(res)
       if (!res.err){
         setDb(res)
         setError(null)
@@ -26,7 +25,8 @@ const CrudApi = () => {
         setDb(null)
         setError(res)
       }
-      setLoading(false)    })
+      setLoading(false)
+    })
     
     
   }, [])  
